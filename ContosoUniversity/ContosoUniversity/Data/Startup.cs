@@ -11,5 +11,13 @@ namespace ContosoUniversity
             Configuration = configuration;
         }
         public IConfiguration Configuration { get; }
+
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddDbContext<SchoolContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddControllersWithViews();
+        }
     }
 }
