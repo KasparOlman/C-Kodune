@@ -1,0 +1,10 @@
+﻿namespace ContosoUniversity.Models
+{
+    public enum Grade
+    {
+        A, B, C, D, E, F
+    }
+    public class Enrollment
+    {
+    }
+}
