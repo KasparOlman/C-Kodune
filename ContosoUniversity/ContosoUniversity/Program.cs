@@ -32,6 +32,11 @@ namespace ContosoUniversity
             }
         }
 
-        public static IHostBuilder CreateHostBuiler(string[] args)=>
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+            });
     }
 }
