@@ -11,7 +11,7 @@ namespace ContosoUniversity.Data
             context.Database.EnsureCreated();
 
             // Look for any students.
-            if (context.Studens.Any())
+            if (context.Students.Any())
             {
                 return;   // DB has been seeded
             }
@@ -29,7 +29,7 @@ namespace ContosoUniversity.Data
             };
             foreach (Student s in students)
             {
-                context.Studens.Add(s);
+                context.Students.Add(s);
             }
             context.SaveChanges();
 
