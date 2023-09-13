@@ -161,6 +161,12 @@ namespace ContosoUniversity.Controllers
             {
                 return NotFound();
             }
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ViewData["ErrorMessage"] =
+                    "Delete failed. Try again, and if the problem persists " +
+                    "see your system administrator.";
+            }
 
             return View(student);
         }
