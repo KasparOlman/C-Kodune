@@ -62,7 +62,9 @@ namespace ContosoUniversity.Controllers
                     students = students.OrderBy(s => s.LastName);
                     break;
             }
-            return View(await students.AsNoTracking().ToListAsync());
+
+            int pageSize = 3;
+            return View(await PaginatedList<Student>.CreateAsync(students.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
         public async Task<IActionResult> Details(int? id)
         {
