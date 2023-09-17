@@ -1,4 +1,6 @@
-﻿namespace ContosoUniversity
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace ContosoUniversity
 {
     public class PaginatedList<T> : List<T>
     {
@@ -9,6 +11,15 @@
         {
             PageIndex = pageIndex;
             TotalPages = (int)Math.Ceiling(count / (double)pageSize);
+
+            this.AddRange(items);
+        }
+        public bool HasPreviousPage => PageIndex > 1;
+        public bool HasNextPage => PageIndex < TotalPages;
+        public static async Task<PaginatedList<T>> CreateAsync(IQueryable<T> source , int pageIndex, int pageSize)
+        {
+            var count = await source.CountAsync();
+            var
         }
     }
 }
