@@ -36,6 +36,8 @@ namespace ContosoUniversity.Controllers
 
             var course = await _context.Courses
                 .Include(c => c.Department)
+                .AsNoTracking()
+
                 .FirstOrDefaultAsync(m => m.CourseID == id);
             if (course == null)
             {
@@ -49,7 +51,13 @@ namespace ContosoUniversity.Controllers
         public IActionResult Create()
         {
             PopulateDepartmentsDropDownList();
+
             return View();
+        }
+
+        private void PopulateDepartmentsDropDownList()
+        {
+            throw new NotImplementedException();
         }
 
         // POST: Courses/Create
@@ -85,6 +93,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
             PopulateDepartmentsDropDownList(course.DepartmentID);
+
             return View(course);
         }
 
@@ -139,6 +148,8 @@ namespace ContosoUniversity.Controllers
 
             var course = await _context.Courses
                 .Include(c => c.Department)
+                .AsNoTracking()
+
                 .FirstOrDefaultAsync(m => m.CourseID == id);
             if (course == null)
             {
